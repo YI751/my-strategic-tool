@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <title>認証中...</title>
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+</head>
+<body>
+    <p>認証情報を処理しています。リダイレクトしない場合は、ページを再読み込みしてください。</p>
+    <script>
+        const supabaseUrl = 'YOUR_SUPABASE_URL';
+        const supabaseAnonKey = 'YOUR_SUPABASE_ANON_KEY';
+        const supabaseClient = supabase.createClient(supabaseUrl, supabaseAnonKey);
+
+        supabaseClient.auth.onAuthStateChange((event, session) => {
+            if (session) {
+                window.location.href = '/';
+            }
+        });
+    </script>
+</body>
+</html>
