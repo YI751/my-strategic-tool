@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>市場予測システム - 確率思考の戦略論ツール</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <style>
+        body { font-family: 'Inter', 'Noto Sans JP', sans-serif; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
+        .content-panel, .auth-card { display: none; }
+        .prose { color: #374151; max-width: none; padding: 0.5rem 1rem 1.5rem 1rem; }
+        .prose h3 { font-size: 1.25rem; font-weight: 700; margin-bottom: 1rem; margin-top: 1.5rem; padding-bottom: 0.5rem; border-bottom: 1px solid #e5e7eb; }
+        .prose strong { font-weight: 700; color: #4f46e5; }
+        .prose ul { list-style-type: disc; padding-left: 1.5rem; margin-top: 0.75rem; }
+        .animate-fade-in { animation: fadeIn 0.5s ease-in-out; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+        .loader { border: 4px solid #f3f3f3; border-top: 4px solid #4f46e5; border-radius: 50%; width: 32px; height: 32px; animation: spin 1s linear infinite; }
+        @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+        .tooltip-container { position: relative; display: inline-flex; align-items: center; }
+        .tooltip-content { position: absolute; left: 50%; transform: translateX(-50%); bottom: 125%; width: max-content; max-width: 320px; padding: 12px; background-color: #1f2937; color: white; font-size: 0.875rem; border-radius: 0.5rem; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); opacity: 0; visibility: hidden; transition: opacity 0.3s, visibility 0.3s; z-index: 20; pointer-events: none; }
+        .tooltip-content::after { content: ''; position: absolute; left: 50%; top: 100%; transform: translateX(-50%); border-width: 8px; border-style: solid; border-color: #1f2937 transparent transparent transparent; }
+        .tooltip-container:hover .tooltip-content { opacity: 1; visibility: visible; }
+        .chart-tooltip { position: absolute; display: none; background: rgba(0, 0, 0, 0.8); color: white; padding: 8px 12px; border-radius: 6px; font-size: 12px; pointer-events: none; white-space: pre-wrap; z-index: 10; }
+        .custom-scrollbar::-webkit-scrollbar { width: 8px; }
+        .custom-scrollbar::-webkit-scrollbar-track { background: #f1f1f1; border-radius: 10px; }
+        .custom-scrollbar::-webkit-scrollbar-thumb { background: #888; border-radius: 10px; }
+        .custom-scrollbar::-webkit-scrollbar-thumb:hover { background: #555; }
+    </style>
