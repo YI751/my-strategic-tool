@@ -1042,13 +1042,23 @@ document.addEventListener('DOMContentLoaded', () => {
     const { results, period } = appState.singleBrand;
     if (!results) return;
 
+    // ▼▼▼ 修正箇所 ▼▼▼
+    // AIに渡す情報として、「市場の総顧客数」と「K値」を使えるように準備します。
+    const { totalCustomers, kValue } = appState.commonInputs;
+    // ▲▲▲ 修正箇所 ▲▲▲
+
     const prompt = `あなたは、クライアント企業のCMO（最高マーケティング責任者）として、実践的なデータ分析と戦略立案を行う専門家です。森岡毅氏の「確率思考の戦略論」を思考の軸とし、広告会社の営業担当者がそのままクライアントに提案できるレベルの、具体的で説得力のある戦略レポートを作成してください。
 
 # クライアントの基本情報
+// ▼▼▼ 修正箇所 ▼▼▼
+// 市場規模と顧客タイプの仮説をAIの思考の前提として追加
+- 市場の総顧客数: ${totalCustomers.toLocaleString()}人
+- 顧客タイプの仮説 (K値): ${kValue} ${kValue < 1.0 ? '（ファン集中型）' : '（大衆利用型）'}
 - 業種: ${singleAiIndustry.value || '指定なし'}
 - 主な商品: ${singleAiProducts.value || '指定なし'}
 - ターゲット顧客: ${singleAiTarget.value || '指定なし'}
 - 自社の強み: ${singleAiStrengths.value || '指定なし'}
+// ▲▲▲ 修正箇所 ▲▲▲
 
 # 分析データ (${period === 'annual' ? '年間' : '月間'})
 - プレファレンススコア: ${results.preferenceScore.toFixed(0)} (市場1,000人あたりの総購入回数)
@@ -1085,7 +1095,7 @@ Part 1の診断結果、特に特定された「ボトルネック」を解消�
 
 * **KPI例 1:**（例: キャンペーン経由の新規来店客数、専用クーポンの利用枚数など）
     * **現状:** 月間XX件 → **目標:** 月間YY件 (ZZ%増)
-    * **計測方法:** （例: キャンペーン経由の新規来店客数、専用クーポンの利用枚数など）
+    * **計測方法:** （例: キャンペーン経度由の新規来店客数、専用クーポンの利用枚数など）
     
 * **KPI例 2:**（例: Eメールの開封率・クリック率、LINE公式アカウントのクーポン利用率など）
     * **現状:** X.X% → **目標:** Y.Y% (Z.Zポイント増)
@@ -1863,6 +1873,7 @@ Part 1で特定したターニングポイントにおけるプレファレン�
 </script>
 </body>
 </html>
+
 
 
 
