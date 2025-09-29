@@ -47,7 +47,7 @@ Deno.serve(async (req)=>{
     }
     const requestPayload = await req.json();
     // 3. Gemini APIへリクエストを転送
-    const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash-latest:generateContent?key=${geminiApiKey}`;
+    const apiUrl = `https://generativelanguage.googleapis.com/v1/models/gemini-1.5-flash-latest:generateContent?key=${geminiApiKey}`;
     console.log('[Gemini Request] Sending request to Gemini API.');
     const geminiResponse = await fetch(apiUrl, {
       method: 'POST',
@@ -84,3 +84,4 @@ Deno.serve(async (req)=>{
     });
   }
 });
+
