@@ -43,8 +43,8 @@ Deno.serve(async (req) => {
     const requestPayload = await req.json();
 
     // 3. Forward the request to the Gemini API with the correct URL
-    // [FINAL FIX] Switched to the universally compatible "gemini-pro" model for the v1 API.
-    const apiUrl = `https://generativelanguage.googleapis.com/v1/models/gemini-pro:generateContent?key=${geminiApiKey}`;
+    // [FINAL FIX] Switched to the specific model name ("gemini-1.5-flash") confirmed by the user's own API usage logs.
+    const apiUrl = `https://generativelanguage.googleapis.com/v1/models/gemini-1.5-flash:generateContent?key=${geminiApiKey}`;
 
     console.log('[Gemini Request] Sending request to Gemini API.');
     const geminiResponse = await fetch(apiUrl, {
